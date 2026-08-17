@@ -1,8 +1,5 @@
-#include "Array.hpp"
-
-
 template <typename T>
-Array<T>::Array() : array(nullptr), arraySize(0)
+Array<T>::Array() : array(new T[0]()), arraySize(0)
 {}
 
 template <typename T>
@@ -26,13 +23,14 @@ Array<T>::~Array()
 template <typename T>
 Array<T> &Array<T>::operator=(const Array<T> &other)
 {
-	if (this = &other)
+	if (this == &other)
 	{
 		return *this;
 	}
+	T* newArray = new T[other.arraySize]();
 	delete[] array;
+	array = newArray;
 	arraySize = other.arraySize;
-	array = new T[arraySize]();
 	for (unsigned int i = 0; i < arraySize; i++)
 	{
 		array[i] = other.array[i];
@@ -42,6 +40,16 @@ Array<T> &Array<T>::operator=(const Array<T> &other)
 
 template <typename T>
 T &Array<T>::operator[](unsigned int index)
+{
+	if (index >= arraySize)
+	{
+		throw std::out_of_range("Index out of range");
+	}
+	return array[index];
+}
+
+template <typename T>
+const T &Array<T>::operator[](unsigned int index) const
 {
 	if (index >= arraySize)
 	{

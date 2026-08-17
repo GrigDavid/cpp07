@@ -2,6 +2,8 @@
 #define ARRAY_HPP
 
 #include <exception>
+#include <stdexcept>
+#include <iostream>
 
 template <typename T>
 class Array{
@@ -10,8 +12,11 @@ class Array{
 		Array(unsigned int n);
 		Array(const Array<T> &other);
 		~Array();
+
 		Array<T> &operator=(const Array<T> &other);
+
 		T &operator[](unsigned int index);
+		const T &operator[](unsigned int index) const;
 		unsigned int size() const;
 	private:
 		T *array;

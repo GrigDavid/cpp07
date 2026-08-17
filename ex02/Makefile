@@ -1,6 +1,6 @@
 CXX = c++
-CXXFLAGS = -Wall -Wextra -Werror -std=c++98
-SRCS = Array.cpp main.cpp
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -g3
+SRCS = main.cpp
 OBJS = $(SRCS:.cpp=.o)
 NAME = array
 
